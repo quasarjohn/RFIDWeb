@@ -1,0 +1,99 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Attendance Monitoring!</title>
+		 <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+      <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	  <link rel="stylesheet" type="text/css" href="global.css"/>
+	  <link rel="stylesheet" type="text/css" href="index.css">
+	  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	</head>
+	<body>
+
+		<nav>
+			<div class="nav-wrapper color-primary">
+		    <ul id="nav-mobile" class="left hide-on-med-and-down">
+		    	<li><a href="index.html">Home</a></li>
+        	<li><a href="add-student.html">Add Student</a></li>
+        	<li class="active"><a href="id-activation.html">ID Activation</a></li>
+        	<li><a href="monitoring.html">Monitoring</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="card search-bar" style="margin: auto; margin-top: 16px">
+			<div class="valign-wrapper">
+				<input id="search-field" style="margin-left: 16px;" 
+					placeholder="Search by student number" 
+					type="text" name="search">
+					<i onclick="searchStudentLocal()" class="material-icons clickable-icon" style="margin-bottom: 20px; margin-right: 10px">search</i>
+				</div>
+				<div id="data_progress" class="progress hidden" style="margin-top: -24px">
+	      	<div class="indeterminate"></div>
+	  		</div>
+		</div>
+
+			<div  id="content" class="container hidden" style="margin-top: 16px">
+			<div class="card" id="result">
+				
+				<div class="row" style="margin: auto;">
+				<div class="col s12 l4" style="text-align: center;">
+				<img id="dp" src="assets/emma.jpg" class="responsive-img circle" style="width: 240px; height: 240px; margin: 32px;">
+			</div>
+			<div class="col s12 l8" style="padding-left: 32px; padding-top: 16px; padding-bottom: 32px">
+				
+				<h4 class="material-text" id="name"></h4>
+				<h5 class="material-text" id="student_no"></h5>
+				<h5 class="material-text" id="program"></h5>
+				<h5 class="material-text" id="year"></h5>
+				<h5 class="material-text" id="section"></h5>
+				<p id="guardian"></p>
+				<p id="phone"></p>
+				<p id="address"></p>
+
+			</div>
+
+			<div class="col s12 l12 color-primary valign-wrapper" style="height: 60px; text-align: center; padding-left: 200px; padding-right: 200px">
+				<i style="margin:auto;" class="material-icons md-24 md-light clickable-icon">edit</i>
+				<i style="margin:auto;" class="material-icons md-24 md-light clickable-icon">camera</i>
+				<i id="fingerprint" style="margin:auto;" class="material-icons md-24 md-light clickable-icon">fingerprint</i>
+				<i style="margin:auto;" class="material-icons md-24 md-light clickable-icon">delete</i>
+			</div>
+
+		</div>
+		</div>
+
+		</div>
+
+	  <!-- Modal Structure -->
+	  <div id="modal1" class="modal">
+	    <div class="modal-content">
+	      <h4>ID Activation</h4>
+	      <p>Tap ID to activate.</p>
+	      <div class="centered-text">
+	      	<img src="assets/ic_rfid.jpg">
+	      	<input id="rfid_input" type="text" style="height: 0px; width: 0px; opacity: 0%;">
+	      </div>
+	    </div>
+	  </div>
+	<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+		<script>
+		  // Initialize Firebase
+		  var config = {
+		    apiKey: "AIzaSyDZwUYNB6NbDY0A6HhlvZ61utmjABkn4uw",
+		    authDomain: "attendancemonitoring-c9982.firebaseapp.com",
+		    databaseURL: "https://attendancemonitoring-c9982.firebaseio.com",
+		    projectId: "attendancemonitoring-c9982",
+		    storageBucket: "",
+		    messagingSenderId: "60784019216"
+		  };
+		  firebase.initializeApp(config);
+		</script>
+  <script type="text/javascript" src="id-activation.js"></script>
+	</body>
+	</html>

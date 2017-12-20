@@ -1,0 +1,64 @@
+.material-text {
+	font-weight: 300;
+}
+
+.material-text-slim {
+	font-weight: 200;
+}
+
+.centered-text {
+	text-align: center;"
+}
+
+.search-bar {
+	width: 40%; 
+	height: 45px; 
+}
+
+.search-bar input {
+   border-bottom: 0px transparent !important;
+   box-shadow: 0 0px 0 0 transparent !important
+ }
+
+.search-bar input:focus {
+   border-bottom: 0px transparent !important;
+   box-shadow: 0 0px 0 0 transparent !important
+}
+
+
+body {
+	background: #efefef
+}
+
+.color-primary {
+	background: #182533
+}
+
+.color-accent {
+	background:#ffad33
+}
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+.clickable-icon {
+	cursor: pointer;
+}
+
+.hidden-input {
+	height: 0px; width: 0px; opacity: 0%
+}
+
+.hidden {
+	visibility: hidden;
+}
