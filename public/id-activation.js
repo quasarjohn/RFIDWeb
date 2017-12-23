@@ -1,6 +1,7 @@
 document.getElementById('search-field').focus();
 
 var student_no = localStorage.getItem("student_no");
+localStorage.setItem("student_no", "");
 var student_uid; 
 var database = firebase.database();
 
@@ -16,6 +17,7 @@ function searchStudentLocal() {
 function searchStudent() {
 	// search only if student_no is not empty
 	if (student_no.length > 0) {
+		$('#search-field').val(student_no);
 		$('#data_progress').removeClass('hidden');
 
 		database.ref('students').
@@ -47,6 +49,11 @@ function searchStudent() {
 $(document).ready(function() { $('.modal').modal(); });
 
 function init() {
+
+	$('#search-field').keypress(function(e) {
+		if(e.which == 13) 
+			searchStudentLocal();
+	}) 
 
 	if(student_no.length == 0)
 		$('#content').addClass('hidden');
@@ -81,4 +88,8 @@ function init() {
 
 function updateRfid(uid, rfid) {
 	database.ref('students/' + uid + "/rfid").set(rfid);
+}
+
+function disableRfid() {
+	database.ref('students/' + student_uid + "/rfid").set('0');
 }

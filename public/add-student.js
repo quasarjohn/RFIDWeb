@@ -1,3 +1,7 @@
+var student_no = localStorage.getItem('student_no_edit');
+var edit = false;
+var key;
+
 var database = firebase.database();
 var student_no = 1000;
 var ready = true;
@@ -9,14 +13,33 @@ function loadData() {
 
 	document.getElementById('last-name').focus();
 
-	//load student number
-	database.ref('student_no').on('value', function(snapshot) {
-		student_no = snapshot.val() + 1;
-		console.log(student_no);
-		$("#student-no").text("Student No: " + student_no);
-	});
+	if(student_no.length > 0) 
+		edit = true;
 
+	//load student data on the fields if edit is invoked
+	if(edit) {
+		loadStudentData();
+	}
+	else {
+		//load student number
+		database.ref('student_no').on('value', function(snapshot) {
+			student_no = snapshot.val() + 1;
+			console.log(student_no);
+			$("#student-no").text("Student No: " + student_no);
+		});
+	}
 };
+
+function loadStudentData() {
+	database.ref('students').
+	orderByChild('student_no').
+	equalTo(parseInt(student_no)).on(value, function(snapshot) {
+		snapshot.forEach(function(s) {
+			key = s.key();
+			var student = s.val();
+		})
+	});
+}
 
 $("#save_btn").click(function() {
 	//adds student to database
@@ -81,28 +104,52 @@ function saveData() {
 	var guardian_address= $("#guardian-address").val();
 
 	if(ready) {
-		database.ref('students').push({
-		last_name: last_name,
-		first_name: first_name,
-		middle_name: middle_name,
-		address: address,
-		phone_number: phone_number,
-		birth_date: birth_date,
-		civil_status: civil_status,
-		nationality: nationality,
-		section: section,
-		program: program,
-		year: year,
-		guardian_name: guardian_name,
-		guardian_phone: guardian_phone,
-		guardian_address: guardian_address,
-		date_added: new Date().getTime(), 
-		student_no: student_no
-	});
 
-	database.ref('rfid/' + student_no).set(0);
-	database.ref('student_no').set(student_no);
+		//if not edit, push new student
+		if(!edit) {
+			database.ref('students').push({
+				last_name: last_name,
+				first_name: first_name,
+				middle_name: middle_name,
+				address: address,
+				phone_number: phone_number,
+				birth_date: birth_date,
+				civil_status: civil_status,
+				nationality: nationality,
+				section: section,
+				program: program,
+				year: year,
+				guardian_name: guardian_name,
+				guardian_phone: guardian_phone,
+				guardian_address: guardian_address,
+				date_added: new Date().getTime(), 
+				student_no: student_no
+			});
 
+			database.ref('rfid/' + student_no).set(0);
+			database.ref('student_no').set(student_no);
+		}
+		//edit existing student
+		else {
+			database.ref('students/' + key).set({
+				last_name: last_name,
+				first_name: first_name,
+				middle_name: middle_name,
+				address: address,
+				phone_number: phone_number,
+				birth_date: birth_date,
+				civil_status: civil_status,
+				nationality: nationality,
+				section: section,
+				program: program,
+				year: year,
+				guardian_name: guardian_name,
+				guardian_phone: guardian_phone,
+				guardian_address: guardian_address,
+				date_added: new Date().getTime(), 
+				student_no: student_no
+			});
+		}
 	clearFields();
 	}
 }
