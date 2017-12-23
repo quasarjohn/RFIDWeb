@@ -25,19 +25,19 @@ function searchStudent() {
 		equalTo(parseInt(student_no)).
 		on('value', function(snapshot) {
 			snapshot.forEach(function(s) {
-			var student = s.val();
-			student_uid = s.key;
-			console.log(s.key);
-			$("#name").text(student.last_name + ", " + student.first_name + " " + student.middle_name);
-			$('#program').text('Program: ' + student.program);
-			$('#year').text("Year Level: " + student.year);
-			$('#section').text('Section: ' + student.section);
-			$('#guardian').text("Guardian: " + student.guardian_name);
-			$('#phone').text("Phone Number: " + student.guardian_phone);
-			$('#address').text("Address: " + student.guardian_address);
-			$('#student_no').text(student.student_no);
+				var student = s.val();
+				student_uid = s.key;
+				console.log(s.key);
+				$("#name").text(student.last_name + ", " + student.first_name + " " + student.middle_name);
+				$('#program').text('Program: ' + student.program);
+				$('#year').text("Year Level: " + student.year);
+				$('#section').text('Section: ' + student.section);
+				$('#guardian').text("Guardian: " + student.guardian_name);
+				$('#phone').text("Phone Number: " + student.guardian_phone);
+				$('#address').text("Address: " + student.guardian_address);
+				$('#student_no').text(student.student_no);
 
-			$('#content').removeClass('hidden');
+				$('#content').removeClass('hidden');
 			});
 			
 			localStorage.setItem("student_no", "");
@@ -92,4 +92,10 @@ function updateRfid(uid, rfid) {
 
 function disableRfid() {
 	database.ref('students/' + student_uid + "/rfid").set('0');
+}
+
+function edit() {
+	console.log("STUDENT NO: " + student_no)
+	localStorage.setItem("student_no_edit", student_no);
+	window.location = 'add-student.html';
 }

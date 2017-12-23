@@ -1,23 +1,29 @@
 var student_no = localStorage.getItem('student_no_edit');
+console.log(student_no);
 var edit = false;
 var key;
 
 var database = firebase.database();
-var student_no = 1000;
 var ready = true;
 
-$(document).ready(function() { $('.modal').modal(); });
-loadData();
+$(document).ready(function() { 
+	$('.modal').modal();
+	loadAutoCompleteData();
+	loadData();
+});
 
 function loadData() {
-
 	document.getElementById('last-name').focus();
 
-	if(student_no.length > 0) 
+	if(student_no != 0) {
 		edit = true;
+		console.log('len :' + student_no)
+	}
+		
 
 	//load student data on the fields if edit is invoked
 	if(edit) {
+		console.log("LOADING STUDENT DATA for " + student_no);
 		loadStudentData();
 	}
 	else {
@@ -33,11 +39,55 @@ function loadData() {
 function loadStudentData() {
 	database.ref('students').
 	orderByChild('student_no').
-	equalTo(parseInt(student_no)).on(value, function(snapshot) {
+	equalTo(parseInt(student_no)).on("value", function(snapshot) {
 		snapshot.forEach(function(s) {
-			key = s.key();
 			var student = s.val();
-		})
+			key = Object.keys(snapshot.val())[0];
+			
+			$("#last-name").val(student.last_name);
+			$("#last-name").focus();
+
+			$("#first-name").val(student.first_name);
+			$("#first-name").focus();
+
+			$("#middle-name").val(student.middle_name);
+			$("#middle-name").focus();
+
+			$("#address").val(student.address);
+			$("#address").focus();
+
+			$("#phone").val(student.phone_number);
+			$("#phone").focus();
+
+			$("#birth-date").val(student.birth_date);
+			$("#birth-date").focus();
+
+			$("#civil-status").val(student.civil_status);
+			$("#civil-status").focus();
+
+			$("#nationality").val(student.nationality);
+			$("#nationality").focus();
+
+			$("#section").val(student.section);
+			$("#section").focus();
+
+			$("#program").val(student.program);
+			$("#program").focus();
+
+			$("#year").val(student.year);
+			$("#year").focus();
+
+			$("#guardian").val(student.guardian_name);
+			$("#guardian").focus();
+
+			$("#guardian-phone").val(student.guardian_phone);
+			$("#guardian-phone").focus();
+
+			$("#guardian-address").val(student.guardian_address);
+			$("#guardian-address").focus();
+
+			$('#last-name').focus();
+		});
 	});
 }
 
@@ -147,8 +197,11 @@ function saveData() {
 				guardian_phone: guardian_phone,
 				guardian_address: guardian_address,
 				date_added: new Date().getTime(), 
-				student_no: student_no
+				student_no: parseInt(student_no)
 			});
+
+			localStorage.setItem('student_no', student_no);
+			window.location = 'id-activation.html'
 		}
 	clearFields();
 	}
@@ -173,4 +226,39 @@ function clearFields() {
 	document.getElementById('last-name').focus();
 }
 
+function loadAutoCompleteData() {
+	database.ref('programs').on('value', function(snapshot) {
+		$('#program').autocomplete({
+		  data: snapshot.val(),
+		  limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+		  onAutocomplete: function(val) {
+		  	setTimeout(function() {
+		  		$('#year').focus();
+		  	}, 100);
+		  },
+		  minLength: 0, // The minimum length of the input for the autocomplete to start. Default: 1.
+		});
+	});
+
+	$('#section').focus(function(){
+		var program = $('#program').val();
+
+		database.ref('sections/' + program).on('value', function(snapshot) {
+			$('#section').autocomplete({
+		    data: snapshot.val(),
+		    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+		    onAutocomplete: function(val) {
+		      setTimeout(function() {
+		  		$('#name').focus();
+		  	}, 100);
+		    },
+		    minLength: 0, // The minimum length of the input for the autocomplete to start. Default: 1.
+			})
+		})
+	});
+}
+
+function validateInput() {
+	
+}
 
