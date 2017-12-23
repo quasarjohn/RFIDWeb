@@ -125,13 +125,12 @@ $("#save_btn").click(function() {
 		$('#title').text('Save Data?')
 		$('#subtitle').text('Make sure you have double checked the data before saving it.');
 		$('#action').text('SAVE');
-	}else {
-		$('#title').text('Unable to save.')
-		$('#subtitle').text('Make sure no field is empty.');
-		$('#action').text('OKAY');
-	}
 
-	$('#save_modal').modal('open');
+		$('#save_modal').modal('open');
+
+	}else {
+		Materialize.toast('Make sure no field is empty.', 2000)
+	}
 
 });
 

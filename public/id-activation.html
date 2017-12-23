@@ -60,7 +60,7 @@
 
 			<div class="col s12 l12 color-primary valign-wrapper" style="height: 60px; text-align: center; padding-left: 200px; padding-right: 200px">
 				<i style="margin:auto;" class="material-icons md-24 md-light clickable-icon" onclick="edit()">edit</i>
-				<i style="margin:auto;" class="material-icons md-24 md-light clickable-icon">camera</i>
+				<i style="margin:auto;" class="material-icons md-24 md-light clickable-icon" onclick="changeImage()">camera</i>
 				<i id="fingerprint" style="margin:auto;" class="material-icons md-24 md-light clickable-icon">fingerprint</i>
 				<i style="margin:auto;" class="material-icons md-24 md-light clickable-icon" onclick="disableRfid()">delete</i>
 			</div>
@@ -80,6 +80,7 @@
 	      	<input id="rfid_input" type="text" style="height: 0px; width: 0px; opacity: 0%;">
 	      </div>
 	    </div>
+	    	  <input type="file" name="image" id="img_chooser" style="display: none;" />
 	  </div>
 	<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
 		<script>
@@ -89,7 +90,7 @@
 		    authDomain: "attendancemonitoring-c9982.firebaseapp.com",
 		    databaseURL: "https://attendancemonitoring-c9982.firebaseio.com",
 		    projectId: "attendancemonitoring-c9982",
-		    storageBucket: "",
+		    storageBucket: "gs://attendancemonitoring-c9982.appspot.com",
 		    messagingSenderId: "60784019216"
 		  };
 		  firebase.initializeApp(config);
