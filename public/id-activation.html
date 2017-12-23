@@ -43,7 +43,7 @@
 				
 				<div class="row" style="margin: auto;">
 				<div class="col s12 l4" style="text-align: center;">
-				<img id="dp" src="assets/emma.jpg" class="responsive-img circle" style="width: 240px; height: 240px; margin: 32px;">
+				<img id="dp" src="assets/ic_avatar.png" class="responsive-img circle" style="width: 240px; height: 240px; margin: 32px;">
 			</div>
 			<div class="col s12 l8" style="padding-left: 32px; padding-top: 16px; padding-bottom: 32px">
 				
@@ -62,7 +62,7 @@
 				<i style="margin:auto;" class="material-icons md-24 md-light clickable-icon" onclick="edit()">edit</i>
 				<i style="margin:auto;" class="material-icons md-24 md-light clickable-icon" onclick="changeImage()">camera</i>
 				<i id="fingerprint" style="margin:auto;" class="material-icons md-24 md-light clickable-icon">fingerprint</i>
-				<i style="margin:auto;" class="material-icons md-24 md-light clickable-icon" onclick="disableRfid()">delete</i>
+				<i id="delete_img" style="margin:auto;" class="material-icons md-24 md-light clickable-icon" onclick="disableRfid()">delete</i>
 			</div>
 
 		</div>
@@ -82,6 +82,18 @@
 	    </div>
 	    	  <input type="file" name="image" id="img_chooser" style="display: none;" />
 	  </div>
+
+
+	  <div id="lock_modal" class="modal">
+	    <div class="modal-content">
+	      <h4 id="title">Disable RFID?</h4>
+	      <p id="subtitle">This will remove access to the ID card associated to this account.</p>
+	    </div>
+	    <div class="modal-footer">
+      	<a id="action" id="save_btn" onclick="saveData()" class="modal-action modal-close waves-effect waves-green btn-flat">DISABLE</a>
+   		</div>
+	  </div>
+
 	<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
 		<script>
 		  // Initialize Firebase

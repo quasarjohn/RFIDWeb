@@ -43,6 +43,9 @@ function searchStudent() {
 				$('#address').text("Address: " + student.guardian_address);
 				$('#student_no').text(student.student_no);
 
+				if(student.rfid == null || student.rfid == '0')
+					$('#delete_img').css('display', 'none');
+
 				$('#content').removeClass('hidden');
 				count++;
 			});
@@ -106,7 +109,8 @@ function updateRfid(uid, rfid) {
 }
 
 function disableRfid() {
-	database.ref('students/' + student_uid + "/rfid").set('0');
+	$('#lock_modal').modal('open');
+	// database.ref('students/' + student_uid + "/rfid").set('0');
 }
 
 function edit() {
@@ -119,10 +123,15 @@ function changeImage() {
 	$('#img_chooser').click();
 }
 
+function toggleLock() {
+}
+
 $(document).ready(function() {
+	$('.modal').modal();
+
 	$('#img_chooser').change(function() {
 		var selectedFile = document.getElementById('img_chooser').files[0];
-		var ref = storage.child('test.jpg');
+		var ref = storage.child('students_img/' + student_uid+ '/dp.jpg');
 		ref.put(selectedFile).then(function(snapshot) {
 			var url = snapshot.downloadURL;
 			console.log(url);

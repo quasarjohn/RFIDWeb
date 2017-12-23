@@ -2,6 +2,7 @@ var student_no = localStorage.getItem('student_no_edit');
 console.log(student_no);
 var edit = false;
 var key;
+var img_url;
 
 var database = firebase.database();
 var ready = true;
@@ -43,6 +44,8 @@ function loadStudentData() {
 		snapshot.forEach(function(s) {
 			var student = s.val();
 			key = Object.keys(snapshot.val())[0];
+
+			img_url = student.img_url;
 			
 			$("#last-name").val(student.last_name);
 			$("#last-name").focus();
@@ -196,7 +199,8 @@ function saveData() {
 				guardian_phone: guardian_phone,
 				guardian_address: guardian_address,
 				date_added: new Date().getTime(), 
-				student_no: parseInt(student_no)
+				student_no: parseInt(student_no),
+				img_url: img_url
 			});
 
 			localStorage.setItem('student_no', student_no);
