@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta name="google-signin-client_id" content="60784019216-qhrmttomi9kds4lndcmbac26mvs8g7u5.apps.googleusercontent.com">
+	<meta name="google-signin-cookiepolicy" content="single_host_origin">
+	<meta name="google-signin-scope" content="profile email">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	   <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="login.css">
+</head>
+<body>
+
+
+		
+	<div class="wrapper">
+		
+		<div class="container">
+      <div class="card centered-div" style="width: 400px; height: 200px">
+        <div class="card-content">
+          <span class="card-title">Login to Continue</span>
+          <p>You may login only using an authorized gmail address.</p>
+          <div class="g-signin2" data-onsuccess="onSignIn" style="margin-top: 30px"></div>
+      </div>
+    </div>
+	</div>
+	</div>
+
+
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+			    apiKey: "AIzaSyDZwUYNB6NbDY0A6HhlvZ61utmjABkn4uw",
+			    authDomain: "attendancemonitoring-c9982.firebaseapp.com",
+			    databaseURL: "https://attendancemonitoring-c9982.firebaseio.com",
+			    projectId: "attendancemonitoring-c9982",
+			    storageBucket: "attendancemonitoring-c9982.appspot.com",
+			    messagingSenderId: "60784019216"
+			  };
+		firebase.initializeApp(config);	  
+		</script>
+		<script type="text/javascript" src="login.js"></script>
+</body>
+</html>

@@ -1,23 +1,3 @@
-$('#search-field').focus();
-
-$('#search-field').keypress(function(e) {
-		if(e.which == 13) 
-			search();
-});
-
-function search() {
-	var param = $("#search-field").val();
-
-	if(param.length > 0) {
-		//redirect to activation
-		localStorage.setItem('student_no', param);
-	}
-}
-
-$(document).ready(function() {
-	 $(".button-collapse").sideNav();
-});
-
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
   	console.log(user);
@@ -28,6 +8,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 		$('#avatar').addClass('gone');
 		$('#log-in').removeClass('gone');
 
+		window.location = 'login.html'
   }
 });
 

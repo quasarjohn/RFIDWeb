@@ -62,3 +62,7 @@ body {
 .hidden {
 	visibility: hidden;
 }
+
+.gone {
+	display: none;
+}

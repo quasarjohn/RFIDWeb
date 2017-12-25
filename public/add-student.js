@@ -11,12 +11,23 @@ $(document).ready(function() {
 	$('.modal').modal();
 	loadAutoCompleteData();
 	loadData();
+	$(".button-collapse").sideNav();
+
+	$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 80, // Creates a dropdown of 15 years to control year,
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false // Close upon selecting a date,
+  });
+
 });
 
 function loadData() {
 	document.getElementById('last-name').focus();
 
-	if(student_no != 0) {
+	if(student_no != 0 && student_no != null) {
 		edit = true;
 		console.log('len :' + student_no)
 	}

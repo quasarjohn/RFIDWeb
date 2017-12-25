@@ -1,4 +1,5 @@
 var database = firebase.database();
+var student_uid;
 
 //listens to new inserts to attendance and shows data on screen
 initDataListener();
@@ -36,6 +37,8 @@ function initRfidWriter() {
 			  	var student; 
 			    snapshot.forEach(function(s) {
 			    	student = s.val();
+			    	student_uid = Object.keys(snapshot.val())[0];
+			    	console.log(student_uid);
 			    	size++;
 			    });
 
@@ -80,7 +83,8 @@ function initDataListener() {
 					$('#program').text('Program: ' +student.program);
 					$('#year').text('Year: ' + student.year);
 					$('#section').text('Section: ' + student.section);
-				})
+					$('#img').attr('src', student.img_url);
+				});
 		}); 
 	});
 
@@ -124,7 +128,7 @@ function formatDate(date) {
   var monthIndex = date.getMonth();
   var year = date.getFullYear();
 
-  return monthNames[monthIndex] + ' ' + day +  ', ' + year;
+  return day + ' ' + monthNames[monthIndex] +  ', ' + year;
 }
 
 function requestJson(url, params) {
@@ -138,9 +142,24 @@ function requestJson(url, params) {
 }
 
 function writeAttendance(student) {
+	//write attendance to global log
+	var date = new Date();
+	var time_stamp = date.getTime();
+
 	database.ref('attendance').push().set({
 		student_no : student.student_no,
 		rfid : student.rfid, 
-		time_stamp : new Date().getTime()
-	})
+		time_stamp : time_stamp,
+		string_date : formatDate(date)
+	});
+
+	database.ref('indiv_attendance/' + student.student_no).push().set({
+		rfid : student.rfid, 
+		time_stamp : date.getTime(),
+		string_date : formatDate(date)
+	});
 }
+
+$(document).ready(function() {
+	$(".button-collapse").sideNav();
+})

@@ -12,3 +12,7 @@
     border-bottom-width: 1px;
     background-color: transparent;
 }
+
+.img-avatar {
+	width: 40px; height: 40px; transform: translateY(12px);
+}

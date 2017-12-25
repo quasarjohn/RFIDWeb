@@ -128,6 +128,7 @@ function toggleLock() {
 
 $(document).ready(function() {
 	$('.modal').modal();
+	$(".button-collapse").sideNav();
 
 	$('#img_chooser').change(function() {
 		var selectedFile = document.getElementById('img_chooser').files[0];
