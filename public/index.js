@@ -11,6 +11,7 @@ function search() {
 	if(param.length > 0) {
 		//redirect to activation
 		localStorage.setItem('student_no', param);
+		window.location = 'id-activation.html';
 	}
 }
 

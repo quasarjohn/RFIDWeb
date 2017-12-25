@@ -87,8 +87,6 @@ function initDataListener() {
 				});
 		}); 
 	});
-
-
 }
 
 function sendSMS(student) {

@@ -15,11 +15,11 @@
 			<div class="nav-wrapper color-primary">
 			  <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 		    <ul id="nav-mobile" class="left hide-on-med-and-down">
-		    	<li class="active"><a href="index.html">Home</a></li>
+		    	<li><a href="index.html">Home</a></li>
         	<li><a href="add-student.html">Add Student</a></li>
         	<li><a href="id-activation.html">ID Activation</a></li>
         	<li><a href="monitoring.html">Monitoring</a></li>
-        	<li><a href="history.html">Monitoring History</a></li>      	
+        	<li class="active"><a href="history.html">Monitoring History</a></li>
 				</ul>
 
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -35,7 +35,7 @@
         	<li><a href="add-student.html">Add Student</a></li>
         	<li><a href="id-activation.html">ID Activation</a></li>
         	<li><a href="monitoring.html">Monitoring</a></li>
-        	<li><a href="history.html">Monitoring History</a></li>      	        	
+        	<li class="active"><a href="history.html">Monitoring History</a></li>
         	<li><a href="#">Log Out</a></li>
       	</ul>
 
@@ -47,36 +47,54 @@
 			</div>
 		</nav>
 
-		<div id="wrapper" style="text-align: center;">
+		<div class="container">
 			
-			<h2 
-			class="white-text"
-			style="margin-top: 80px; font-weight: 200">
-			Welcome to Attendance<br>Monitoring
-			</h2>
+			
 
-			<a
-    	href="add-student.html"
-    	class="center-align waves-effect waves-dark btn-large white black-text"
-    	style="margin-top:20px; width:150px; margin-right:5px">ADD&nbspSTUDENT
-  		</a>
-			<a
-      href="monitoring.html"
-      class="center-align waves-effect waves-light btn-large"
-      style="background:#ffad33; margin-top:20px; width:150px; margin-left:5px">
-      MONITORING
-    	</a>
-    
-			<div class="card search-bar" style="margin: auto; margin-top: 50px">
-				<div class="valign-wrapper">
-					<input id="search-field" style="margin-left: 16px;" 
-					placeholder="Search by student number" 
-					type="text" name="search">
-					<i class="material-icons clickable-icon" style="margin-bottom: 20px; margin-right: 10px;" onclick="search()">search</i>
+			<div>
+				
+			<div class="centered-text" style="margin-top: 20px">
+
+				<div style="display: inline-flex;">
+					<h4 id="selected_date" class="material-text">25, December 2017</h4>
+					<a
+		      href="#"
+		      class="center-align waves-effect waves-light btn"
+		      style="background:#ffad33; margin-top:15px; margin-left:12px" onclick="chooseDate()">
+		      CHANGE&nbspDATE
+		    	</a>
 				</div>
+				
 			</div>
-    	</div>
+
+			<table class="centered">
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>Student No</th>
+              <th>Program</th>
+               <th>Section</th>
+              <th>Year</th>
+              <th>Time</th>
+          </tr>
+        </thead>
+
+        <tbody id="table-body">
+          
+         
+        </tbody>
+      </table>
+            
+
+			</div>
+
+			
 		</div>
+
+		<div class="input-field">
+					<input id="date-picker" placeholder="Select Date" type="text" name="date" class="datepicker hidden" style="width: 300px">
+			</div>
+
   	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   	<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
@@ -92,7 +110,7 @@
 		  };
 		  firebase.initializeApp(config);
 		</script>
-		<script type="text/javascript" src="index.js"></script>
+		<script type="text/javascript" src="history.js"></script>
 		<script type="text/javascript" src="dropdown.js"></script>
 		<script type="text/javascript" src="logout.js"></script>
 	</body>
